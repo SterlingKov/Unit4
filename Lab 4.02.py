@@ -44,13 +44,13 @@ Hint
 Remember that you can index into the string and get the length of a string. Use that to get the last letter of each word.
 
 '''
-word_list = ['berry', 'apple', 'melon', 'string', 'byron']
+word_list = ['berry', 'apple', 'melon', 'string', 'byrony']
 spec_cases = 'y '
 def pluralize_words(word_list):
     global spec_cases
     for c in range(len(word_list)):
         if word_list[c][-1] == 'y':
-            word_list[c] = word_list[c].replace('y', 'ies')
+            word_list[c] = word_list[c][:len(word_list[c])-1] + 'ies'
         else:
             word_list[c] += 's'
     
