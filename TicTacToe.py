@@ -14,18 +14,49 @@ def board_state():
 
 
 
+"""def check1():
+    for i in range(len(board)):
+        if board[i][0] == board[i][1] and board[i][1] == board[i][2]:
+            print(f"player {board[i][0]} wins")
+            break
+
+def check2():
+    for i in range(len(board[0])):
+        if board[0][i] == board[0][i+1] and board[0][i+1] == board[0][i+2]:
+            print(f"player {board[0][i]} wins")
+            break
+
+def check3():
+    if board[0][0] == board[1][1] and board[1][1] == board[2][2]:
+        print(f"player {board[0][0]} wins")
+    elif board[0][2] == board[1][1] and board[1][1] == board[2][0]:
+        print(f"player {board[0][2]} wins")"""
+
+# and board[i][c] != 'X' and board[i][c] != 'O'
+
+taken = []
+
 while True:
+    t = False
+    f = True
+    print(t)
     XTurn = ''
     OTurn = ''
+    board_state()
     if type(XTurn) == int:
-        pass
+        XTurn = ''
     else:
-        while type(XTurn) != int:
+        while type(XTurn) != int and XTurn not in taken:
             XTurn = int(input("Which square would you like to pick for X?- "))
-    for i in range(len(board)):
-        for c in range(len(board[i])):
-            if XTurn == board[i][c]:
+    for i in range(0, len(board)-1):
+        for c in range(0, len(board[i])-1):
+            print(XTurn)
+            print(board[i][c])
+            if XTurn == board[i][c] and board[i][c] != 'X' and board[i][c] != 'O':
+                print(XTurn)
                 board[i][c] = 'X'
+                taken.append(XTurn)
+                t = True
                 for i in range(len(board)):
                     if board[i][0] == board[i][1] and board[i][1] == board[i][2]:
                         board_state()
@@ -42,11 +73,28 @@ while True:
                 elif board[0][2] == board[1][1] and board[1][1] == board[2][0]:
                     board_state()
                     print(f"player {board[0][2]} wins")
-                    quit()
-                
+                    quit()   
+            elif t:
+                print("yes")
+                break
             else:
-                
-                pass
+                print("this square is already taken")
+                f = False
+                print(1)
+                break
+        if f:
+            print(6)
+            pass
+        else:
+            print(3)
+            break
+    if f:
+        print(4)
+        pass
+    else:
+        print(5)
+        continue
+
 
     board_state()
 
@@ -57,7 +105,8 @@ while True:
             OTurn = int(input("Which square would you like to pick for O?- "))
     for i in range(len(board)):
         for c in range(len(board[i])):
-            if OTurn == board[i][c]:
+            if OTurn == board[i][c] and board[i][c] not in taken:
+                taken.append(board[i][c])
                 board[i][c] = '0'
                 for i in range(len(board)):
                     if board[i][0] == board[i][1] and board[i][1] == board[i][2]:
